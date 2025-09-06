@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Demo 1] - Restaurante</title>
+    <link href="./plugins/bootstrap/bootstrap5.css" rel="stylesheet">
+    <link href="./plugins/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="./fonts/orbitron/orbitron.css" rel="stylesheet">
+    <link href="./fonts/audiowide/audiowide.css" rel="stylesheet">
+    <link defer rel="stylesheet" href="./plugins/animate/animate.css" />
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.ico">
+</head>
+
+<body>
+    <div id="loader" class="pantalla-carga">
+        <img src="img/mesera.webp" height="30%" alt="Cargando...">
+        <p>Preparando menús, espere por favor...</p>
+    </div>
+
+    <div class="fondo-parpadeo"></div>
+    <div class="container" id="contenedor-principal">
+        <div class="card shadow">
+            <div class="card-header text-center">
+                <h1>MENÚ DEL RESTAURANTE INTERGALÁCTICO</h1>
+                <div class="card-divider"></div>
+                <span class="subtitulo-galactico">Sabores que explotan en tu quinto tentáculo</span>
+            </div>
+
+            <div class="card-body">
+                <div id="contenedor-card" class="row d-flex m-lg-3 mb-4 m-lg-4">
+                    <div class="col-12 col-lg-6 mt-3 mt-sm-0 p-sm-2 pe-lg-1">
+                        <form id="formulario" data-formPaso="Paso1">
+                            <fieldset id="Paso1" class="active">
+                                <legend>Menú</legend>
+
+                                <div class="mb-3">
+                                    <label for="platoPrincipal" class="form-label asterisco">Plato principal:</label>
+                                    <select id="platoPrincipal" name="platoPrincipal" class="form-select"
+                                        data-error="error-platoPrincipal" aria-label="Seleccionar menú principal">
+                                        <option value="0" selected disabled>Seleccione</option>
+                                        <option value="1" id="platoSopa" data-error="error-platoPrincipal"
+                                            data-hijo="advertenciaSopa" data-img="sopa_mini.webp"
+                                            data-texto="Sopa de agujeros negros" data-precio="4700"
+                                            data-descripcion="<p><b>Sopa de agujeros negros:</b> Caldo denso y cósmico que deforma el tiempo. Requiere precaución al sorber.</p>">
+                                            $4.700 - Sopa de agujeros negros (contiene
+                                            singularidades)</option>
+                                        <option value="2" data-img="ensalada_mini.webp"
+                                            data-texto="Ensalada de asteroides" data-precio="1500"
+                                            data-descripcion="<p><b>Ensalada de asteroides:</b> Mezcla crocante de minerales espaciales y brotes cósmicos. Cruje como un meteorito al caer.</p>">
+                                            $1.500 - Ensalada de asteroides (crujiente)</option>
+                                        <option value="3" data-img="filete_mini.webp" data-texto="Filete de Nebulosa"
+                                            data-precio="3400"
+                                            data-descripcion="<p><b>Filete de Nebulosa:</b> Corte galáctico marinado en plasma estelar. Su jugosidad es interdimensional.</p>">
+                                            $3.400 - Filete de Nebulosa (jugoso)</option>
+                                        <option value="4" data-img="hamburguesa_mini.webp"
+                                            data-texto="Hamburguesa de luna" data-precio="1900"
+                                            data-descripcion="<p><b>Hamburguesa de luna:</b> Pan de cráter, queso lácteo lunar y sabor fuera de órbita. Sacia humanoides y alienígenas.</p>">
+                                            $1.900 - Hamburguesa de luna (con queso de la Vía Láctea)</option>
+                                    </select>
+
+                                    <div id="contenedorAdvertenciaSopa" hidden class="form-check form-switch pt-2"
+                                        data-ocultableHidden="true">
+                                        <input id="advertenciaSopa" name="advertenciaSopa"
+                                            data-error="error-advertenciaSopa" class="form-check-input" type="checkbox">
+                                        <label class="form-check-label" for="advertenciaSopa">Acepto riesgo de
+                                            compresión
+                                            espacio-temporal</label>
+                                    </div>
+
+                                    <span id="error-platoPrincipal"></span>
+                                    <span id="error-advertenciaSopa"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <p>Extras:</p>
+                                    <div class="form-check form-switch">
+                                        <input id="extraPolvoEstrellas" name="extras[]" class="form-check-input"
+                                            data-precio="2400" type="checkbox" data-img="polvo_mini.webp"
+                                            data-texto="Polvo de estrellas">
+                                        <label class="form-check-label" for="extraPolvoEstrellas">$2.400 - Polvo de
+                                            estrellas</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input id="extraAireJupiteriano" name="extras[]" class="form-check-input"
+                                            data-precio="1600" type="checkbox" data-img="aire_mini.webp"
+                                            data-texto="Aire de Júpiter">
+                                        <label class="form-check-label" for="extraAireJupiteriano">$1.600 - Aire de
+                                            Júpiter (para
+                                            terrestres: no respirar)</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input id="extraSalsaSupernova" name="extras[]" class="form-check-input"
+                                            data-precio="3000" type="checkbox" data-img="salsa_mini.webp"
+                                            data-texto="Salsa de supernova">
+                                        <label class="form-check-label" for="extraSalsaSupernova">$3.000 - Salsa de
+                                            supernova
+                                            (¡Picante nivel Big Bang!)</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="bebida" class="form-label asterisco">Bebida:</label>
+                                    <select id="bebida" name="bebida" class="form-select" data-error="error-bebida"
+                                        aria-label="Seleccionar bebida">
+                                        <option value="0" selected disabled>Seleccione</option>
+                                        <option value="1" data-img="aceite_mini.webp" data-precio="2100"
+                                            data-texto="Aceite de motor interestelar">
+                                            $2.100 - Aceite de motor interestelar
+                                        </option>
+                                        <option value="2" data-img="liquido_mini.webp" data-precio="1000"
+                                            data-texto="Líquido de anillos de Saturno">
+                                            $1.000 Líquido de anillos de Saturno (con gas)
+                                        </option>
+                                        <option value="3" data-img="te_mini.webp" data-precio="700"
+                                            data-texto="Té de hojas de Marte">
+                                            $700 - Té de hojas de Marte (orgánico)
+                                        </option>
+                                        <option value="4" data-img="agua_mini.webp" data-precio="500"
+                                            data-texto="Agua terrestre">
+                                            $500 - Agua terrestre (¡Solo para valientes!)
+                                        </option>
+                                    </select>
+                                    <span id="error-bebida"></span>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="Paso2" class="oculto">
+                                <legend>Datos del Cliente Interestelar</legend>
+                                <p>Por favor, complete el siguiente formulario para realizar su pedido.</p>
+
+                                <div class="mb-3">
+                                    <label for="nombreCliente" class="form-label asterisco">Nombre del Cliente:</label>
+                                    <input type="text" class="form-control" id="nombreCliente" name="nombreCliente"
+                                        data-error="error-nombreCliente" placeholder="Ej: Zorgon de la Nebulosa X"
+                                        required value="">
+                                    <span id="error-nombreCliente"> </span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label asterisco" for="tentaculos">Número de tentáculos:</label>
+                                    <select id="tentaculos" name="tentaculos" class="form-select"
+                                        data-error="error-tentaculos" aria-label="Seleccionar número de tentáculos"
+                                        required>
+                                        <option value="0" selected>Seleccione</option>
+                                        <option value="0-2">0-2 (Humanoide)</option>
+                                        <option value="3-5">3-5 (Estándar)</option>
+                                        <option value="6-10">6-10 (Premium)</option>
+                                        <option value="11-plus">11+ (¡Por favor, trae tu propia silla!)</option>
+                                    </select>
+                                    <span id="error-tentaculos"> </span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <p class="asterisco">Tipo de metabolismo:</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="Carbono"
+                                            name="tipoMetabolismo" data-error="error-tipoMetabolismo"
+                                            id="metabolismoCarbono" required>
+                                        <label class="form-check-label" for="metabolismoCarbono">Carbono</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="Silicio"
+                                            name="tipoMetabolismo" data-error="error-tipoMetabolismo"
+                                            id="metabolismoSilicio" required>
+                                        <label class="form-check-label" for="metabolismoSilicio">
+                                            Silicio
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="Plasma"
+                                            name="tipoMetabolismo" data-error="error-tipoMetabolismo"
+                                            id="metabolismoPlasma" required>
+                                        <label class="form-check-label" for="metabolismoPlasma">
+                                            Plasma
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="Otro" name="tipoMetabolismo"
+                                            data-error="error-tipoMetabolismo" data-hijo="metabolismoEspecificar"
+                                            id="metabolismoOtro" required>
+                                        <label class="form-check-label" for="metabolismoOtro">
+                                            Otro (especificar)
+                                        </label>
+
+                                        <input type="text" id="metabolismoEspecificar" name="metabolismoEspecificar"
+                                            data-error="error-tipoMetabolismo" data-padre="metabolismoOtro"
+                                            data-ocultable="true" class="form-control ocultarLimpiandoForm"
+                                            style="display: none;" placeholder="Ej: Pasivo / Exitado">
+                                    </div>
+                                </div>
+                                <span id="error-tipoMetabolismo"> </span>
+
+                                <div class="mb-3">
+                                    <p class="asterisco">¿Eres alérgico a algo?:</p>
+                                    <div class="form-check">
+                                        <input id="alergicoNo" name="alergico" class="form-check-input" type="radio"
+                                            value="no" checked data-error="error-alergico" data-texto="No">
+                                        <label class="form-check-label" for="alergicoNo">No</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input id="alergicoSi" name="alergico" class="form-check-input" type="radio"
+                                            value="si" data-error="error-alergico" data-texto="Sí"
+                                            data-hijo="descripcionAlergia">
+                                        <label class="form-check-label" for="alergicoSi">Sí</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label for="descripcionAlergia" class="form-label">Describe tu alergia:</label>
+                                        <textarea id="descripcionAlergia" name="descripcionAlergia" class="form-control"
+                                            data-padre="alergicoSi" data-error="error-alergico" rows="3"
+                                            placeholder="Ej: Gravedad, Humanos, WiFi" disabled></textarea>
+                                    </div>
+                                    <span id="error-alergico"></span>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="Paso3" class="oculto">
+                                <legend>Condiciones Especiales</legend>
+
+                                <div class="mb-3">
+                                    <p class="asterisco">Método de pago:</p>
+                                    <div class="form-check">
+                                        <input id="creditos" name="tipoPago" class="form-check-input" type="radio"
+                                            data-texto="Créditos galácticos" data-error="error-tipoPago">
+                                        <label class="form-check-label" for="creditos">Créditos galácticos</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input id="bitcoin" name="tipoPago" class="form-check-input" type="radio"
+                                            data-texto="Bitcoin de Alpha Centauri" data-error="error-tipoPago">
+                                        <label class="form-check-label" for="bitcoin">Bitcoin de Alpha
+                                            Centauri</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input id="trueque" name="tipoPago" class="form-check-input" type="radio"
+                                            data-texto="Trueque" data-error="error-tipoPago"
+                                            data-hijo="archivoTrueque, descripcionTrueque">
+                                        <label class="form-check-label" for="trueque">Trueque ¿Qué ofreces?</label>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <input id="archivoTrueque" name="archivoTrueque" class="form-control"
+                                            type="file" data-padre="trueque" data-hijo="descripcionTrueque"
+                                            accept=".jpg,.png" data-error="error-tipoPago" data-ocultable="true"
+                                            style="display: none;">
+                                    </div>
+                                    <div class="col mt-3">
+                                        <textarea id="descripcionTrueque" name="descripcionTrueque" class="form-control"
+                                            data-padre="trueque" data-ocultable="true"
+                                            data-error="error-descripcionTrueque" rows="3"
+                                            placeholder="Ej: Este objeto fue robado de..."
+                                            style="display: none;"></textarea>
+                                    </div>
+
+                                    <span id="error-tipoPago"></span>
+                                    <span id="error-descripcionTrueque"></span>
+
+                                    <div class="col pt-2">
+                                        <div class="form-check form-switch">
+                                            <input id="terminosCondiciones" name="terminosCondiciones"
+                                                class="form-check-input mt-2" data-error="error-terminosCondiciones"
+                                                type="checkbox">
+                                            <label class="form-check-label" for="terminosCondiciones">Aceptar términos y
+                                                condiciones
+                                                <button id="leer-terminos" type="button" class="btn btn-link"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-TerminosCondiciones">
+                                                    Leer
+                                                </button>
+                                            </label>
+                                            <span id="error-terminosCondiciones"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="Paso4" class="oculto">
+                                <legend>Resumen del Pedido</legend>
+                                <div id="contenedor-resumen">
+                                    <p id="resumenPedido">
+
+                                        <table class="tabla-resumen"
+                                            style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                                            <thead>
+                                                <th colspan="2">Cliente</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Nombre:</b></td>
+                                                    <td id="resumenNombreCliente"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Número de Tentáculos:</b></td>
+                                                    <td id="resumenTentaculos"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Tipo de Metabolismo:</b></td>
+                                                    <td id="resumenMetabolismo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Descripción de metabolismo:</b></td>
+                                                    <td id="resumenDescripcionMetabolismo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Alergias:</b></td>
+                                                    <td id="resumenAlergias"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Descripción de alergia:</b></td>
+                                                    <td id="resumenDescripcionAlergias"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="tabla-resumen"
+                                            style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                                            <thead>
+                                                <th colspan="3">Detalle de cobro</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Plato principal:</b></td>
+                                                    <td id="resumenPlato"></td>
+                                                    <td id="resumenPlatoCosto"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Bebida:</b></td>
+                                                    <td id="resumenBebida"></td>
+                                                    <td id="resumenBebidaCosto"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Extra 1:</b></td>
+                                                    <td id="resumenExtra1"></td>
+                                                    <td id="resumenExtra1Costo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Extra 2:</b></td>
+                                                    <td id="resumenExtra2"></td>
+                                                    <td id="resumenExtra2Costo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Extra 3:</b></td>
+                                                    <td id="resumenExtra3"></td>
+                                                    <td id="resumenExtra3Costo"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2"><b>TOTAL:</b></td>
+                                                    <td id="resumenTotal"></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                        <table class="tabla-resumen"
+                                            style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                                            <thead>
+                                                <th colspan="2">Medio de pago</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Medio:</b></td>
+                                                    <td id="resumenMedioPago"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Objeto de trueque:</b></td>
+                                                    <td id="resumenObjetoTrueque"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Descripción objeto:</b></td>
+                                                    <td id="resumenDescripcionObjeto"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                                <div id="preview-trueque"></div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+
+
+
+                    <div class="col-12 col-lg-6 mb-3 mb-sm-0 p-sm-2 ps-lg-1">
+                        <div id="contenedor-imagenes">
+                            <fieldset class="active">
+                                <legend>Seleccionado</legend>
+
+                                <div class="row">
+                                    <div class="col-6 col-sm-4 px-1">
+                                        <div class="card-producto">
+                                            <h6>Plato principal</h6>
+                                            <img id="imagenPlato" src="./img/pendiente_mini.webp" alt="Plato Principal"
+                                                class="img-fluid imagen-comida mb-2" loading="lazy">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-sm-8 px-1">
+                                        <p id="descripcionPlato"></p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-6 col-sm-3 p-1">
+                                        <div class="card-producto">
+                                            <h6>Bebida</h6>
+                                            <img id="imagenBebida" src="./img/pendiente_mini.webp" alt="Bebida"
+                                                class="img-fluid imagen-comida" loading="lazy">
+                                            <p id="tituloBebida"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 p-1 contenedor-extra" data-extra="">
+                                        <div class="card-producto">
+                                            <h6>Extra</h6>
+                                            <img src="./img/pendiente_mini.webp" alt="Bebida"
+                                                class="img-fluid imagen-comida imagenExtra" loading="lazy">
+                                            <p class="tituloExtra"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 p-1 contenedor-extra" data-extra="">
+                                        <div class="card-producto">
+                                            <h6>Extra</h6>
+                                            <img src="./img/pendiente_mini.webp" alt="Bebida"
+                                                class="img-fluid imagen-comida imagenExtra" loading="lazy">
+                                            <p class="tituloExtra"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 p-1 contenedor-extra" data-extra="">
+                                        <div class="card-producto">
+                                            <h6>Extra</h6>
+                                            <img id="imagenExtra3" src="./img/pendiente_mini.webp" alt="Bebida"
+                                                class="img-fluid imagen-comida imagenExtra" loading="lazy">
+                                            <p class="tituloExtra"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <button type="reset" id="limpiar-form" for="formulario" class="btn-galaxy">
+                            <i class="fa-solid fa-broom"></i>
+                        </button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" id="volver-form" for="formulario" class="btn-galaxy" disabled>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button type="button" id="avanzar-form" for="formulario" class="btn-galaxy">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button type="submit" id="enviar-form" for="formulario" class="btn-galaxy color-payment" hidden>
+                            <i class="fa-solid fa-credit-card"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-TerminosCondiciones" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Términos y Condiciones del Menú Estelar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Al ordenar cualquier plato en este establecimiento,
+                                <span class="resalte">usted acepta voluntariamente los riesgos asociados</span>
+                                a consumir ingredientes provenientes de sistemas
+                                planetarios
+                                desconocidos, realidades alternativas o dimensiones donde la lógica humana no
+                                aplica.
+                                <span class="resalte">Las sopas con singularidades pueden alterar su percepción del
+                                    tiempo,
+                                    doblar cucharas espontáneamente o generar una segunda versión de usted en el asiento
+                                    de al lado</span>.</p>
+
+                            <p><span class="resalte">La administración no se hace responsable por combustiones internas,
+                                    levitaciones
+                                    no
+                                    deseadas, ni conversaciones telepáticas con entes extradimensionales provocadas
+                                    por
+                                    nuestros aderezos cuánticos</span>. Si su filete de nebulosa empieza a cantar ópera,
+                                por
+                                favor, no lo interrumpa.</p>
+
+                            <p>Cualquier queja, sugerencia o colapso existencial debe ser enviada en sobre
+                                sellado
+                                a través del agujero de gusano junto al baño. No abrimos los domingos ni durante
+                                alineaciones cósmicas con fines destructivos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./plugins/bootstrap/bootstrap5.js"></script>
+    <script defer src="./plugins/sweetalert2/sweetalert2.js"></script>
+    <script type="module" src="./js/funcionalidad.js"></script>
+</body>
+
+</html>
