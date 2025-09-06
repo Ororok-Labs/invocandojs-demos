@@ -18,12 +18,10 @@ body {
     width: auto;
     height: 70px;
     cursor: pointer;
-    background: url(/logo.svg) 0px center / 100% no-repeat;
 }
 
 .container {
     max-width: 1000px;
-    min-width: 350px;
     margin: 0 auto;
     background: rgb(20 26 30 / 90%);
     border-radius: 15px;
