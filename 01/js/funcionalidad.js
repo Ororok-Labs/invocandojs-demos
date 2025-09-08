@@ -113,10 +113,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (this.value === "1") {
             advertenciaSopa.checked = false;
-            js.Formulario.resetearClasesYErrores("#contenedorAdvertenciaSopa", ["is-invalid", "is-valid"]);
+            js.Formulario.resetearClasesYErrores("#contenedor-platos", ["is-invalid", "is-valid"]);
             js.UI.visualizacion.mostrarQuitandoHidden("#contenedorAdvertenciaSopa", "block");
         } else {
             js.UI.visualizacion.ocultarConHidden("#contenedorAdvertenciaSopa");
+            js.UI.visualizacion.ocultar("#error-advertenciaSopa");
+            document.getElementById("error-advertenciaSopa").textContent = "";
         }
     });
 
